@@ -1,0 +1,33 @@
+$primary-color: #444;
+$secondary-colour: #eece1a;
+$show-home-image: true;
+$home-image: url(../img/bgcode.jpeg);
+$background-opacity: 0.4;
+
+//mixin is like a function, can use this transition throughout the site
+@mixin easeOut {
+  transition: all 0.5s ease-out;
+}
+
+//mixin for the background
+@mixin background {
+  @if $show-home-image {
+    &#bg-img {
+      background: $home-image;
+      background-attachment: fixed;
+      background-size: cover;
+
+      //include a sudo element so that I don't have to add a new div and class into the html
+      &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: rgba($primary-color, $background-opacity);
+      }
+    }
+  }
+}
